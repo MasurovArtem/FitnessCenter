@@ -4,6 +4,9 @@ namespace FitnesCenter.BL.Model
 {
     public class User
     {
+        /// <summary>
+        /// UserName 
+        /// </summary>
         public string Name { get; } // Setter не делаю, для того что бы нельзя было поменять имя пользователя
         public Gender Gender { get; }
 
