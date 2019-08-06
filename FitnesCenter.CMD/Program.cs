@@ -7,6 +7,7 @@ namespace FitnesCenter.CMD
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("I'm added new ConsoleWriteLine");
             Console.WriteLine();
             Console.WriteLine("Welcome to fitnes center \n");
 
