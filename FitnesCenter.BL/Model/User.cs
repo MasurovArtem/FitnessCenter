@@ -2,6 +2,7 @@
 
 namespace FitnesCenter.BL.Model
 {
+    [Serializable]
     public class User
     {
         /// <summary>
