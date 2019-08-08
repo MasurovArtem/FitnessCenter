@@ -27,6 +27,7 @@ namespace FitnesCenter.CMD
             var height = Double.Parse(Console.ReadLine());
 
             var userController = new UserController(name, gender, dateBirth, weight, height);
+
             userController.Save(); //TODO: GENDER EMPTY
         } 
     }

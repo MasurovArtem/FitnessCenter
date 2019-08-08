@@ -28,7 +28,7 @@ namespace FitnesCenter.BL.Model
             {
                 throw new ArgumentNullException("Name gender can't be empty or null.", nameof(name));
             }
-            if (Gender == null)
+            if (gender == null)
             {
                 throw new ArgumentNullException("Gender can't be empty.", nameof(gender));
             }
@@ -36,11 +36,11 @@ namespace FitnesCenter.BL.Model
             {
                 throw new ArgumentException("Impossible date of birth.", nameof(birthDate));
             }
-            if(Weight <= 0)
+            if(weight <= 0)
             {
                 throw new ArgumentException("Weight can't be less than or equal to zero.", nameof(weight));
             }
-            if(Height <= 0)
+            if(height <= 0)
             {
                 throw new ArgumentException("Height can't be less than or equal to zero.", nameof(height));
             }

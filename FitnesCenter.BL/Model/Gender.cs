@@ -5,6 +5,7 @@ namespace FitnesCenter.BL.Model
     /// <summary>
     /// Делаю не Enumom что бы удобнее было работать с EntityFramework
     /// </summary>
+    [Serializable]
     public class Gender
     {
         public string Name { get; }

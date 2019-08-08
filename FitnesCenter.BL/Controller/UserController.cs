@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace FitnesCenter.BL.Controller
 {
@@ -72,13 +73,12 @@ namespace FitnesCenter.BL.Controller
         {
             //Serialize User
             //Encrypt file
-            var binFormatter = new BinaryFormatter();
+            BinaryFormatter binFormatter = new BinaryFormatter();
 
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
                 binFormatter.Serialize(fs, User);
             }
         }
-        
     }
 }
