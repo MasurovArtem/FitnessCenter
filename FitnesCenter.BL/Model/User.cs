@@ -5,18 +5,17 @@ namespace FitnesCenter.BL.Model
     [Serializable]
     public class User
     {
-        /// <summary>
-        /// UserName 
-        /// </summary>
-        public string Name { get; } // Setter не делаю, для того что бы нельзя было поменять имя пользователя
-        public Gender Gender { get; }
+        public string Name { get; set; } 
+        public Gender Gender { get; set; }
 
-        public DateTime BirthDate { get; }
+        public DateTime BirthDate { get; set; }
 
         public double Weight { get; set; }
 
         public double Height { get; set; }
         
+        public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
+
         public User(string name, 
                     Gender gender, 
                     DateTime birthDate, 
@@ -44,17 +43,25 @@ namespace FitnesCenter.BL.Model
             {
                 throw new ArgumentException("Height can't be less than or equal to zero.", nameof(height));
             }
-
+            #endregion
             Name = name;
             Gender = gender;
             BirthDate = birthDate;
             Weight = weight;
             Height = height;
-            #endregion
+            
+        }
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Name gender can't be empty or null.", nameof(name));
+            }
+            Name = name;
         }
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age;
         }
     }
 }

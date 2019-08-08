@@ -1,4 +1,4 @@
-using FitnesCenter.BL.Controller;
+﻿using FitnesCenter.BL.Controller;
 using FitnesCenter.BL.Model;
 using System;
 namespace FitnesCenter.CMD
@@ -7,28 +7,59 @@ namespace FitnesCenter.CMD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("I'm added new ConsoleWriteLine");
-            Console.WriteLine();
-            Console.WriteLine("Welcome to fitnes center \n");
+            Console.WriteLine("Wselcome to fitnes center \n");
 
             Console.Write("Enter name: ");
             var name = Console.ReadLine();
 
-            Console.Write("Enter gender: ");
-            var gender = Console.ReadLine();
+            var userController = new UserController(name);
+            if (userController.IsNewUser)
+            {
+                Console.Write("Enter gender : ");
+                var gender = Console.ReadLine();
 
-            Console.Write("Enter date birth : ");
-            var dateBirth = DateTime.Parse(Console.ReadLine());
+                var birthDate = ParseDateTime();
 
-            Console.Write("weight : ");
-            var weight = Double.Parse(Console.ReadLine());
+                var weight = ParseDouble("weight");
 
-            Console.Write("height : ");
-            var height = Double.Parse(Console.ReadLine());
+                var height = ParseDouble("height");
 
-            var userController = new UserController(name, gender, dateBirth, weight, height);
+                userController.SetNewUserData(gender, birthDate, weight, height);
+            }
+            Console.WriteLine(userController.CurrentUser);
 
-            userController.Save(); //TODO: GENDER EMPTY
-        } 
+        }
+        private static DateTime ParseDateTime()
+        {
+            DateTime birthDate;
+            while (true)
+            {
+                Console.Write("Enter date birth (dd.MM.yyyy) : ");
+                if (DateTime.TryParse(Console.ReadLine(), out birthDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Incorect format date time");
+                }
+            }
+            return birthDate;
+        }
+        private static double ParseDouble(string name)
+        {
+            while (true)
+            {
+                Console.Write($"Enter {name}: ");
+                if (double.TryParse(Console.ReadLine(), out double value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine($"Incorect format: {name}");
+                }
+            }
+        }
     }
 }
