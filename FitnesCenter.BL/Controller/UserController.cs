@@ -54,7 +54,7 @@ namespace FitnesCenter.BL.Controller
 
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
-                if (binFormatter.Deserialize(fs) is List<User> users)
+                if (fs.Length > 0 && binFormatter.Deserialize(fs) is List<User> users)
                 {
                     return users;
                 }
