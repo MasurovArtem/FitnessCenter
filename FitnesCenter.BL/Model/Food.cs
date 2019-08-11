@@ -20,12 +20,41 @@ namespace FitnesCenter.BL.Model
         private double CarbohydratsOneGramm => Carbohydrats / 100; // It's property return value
         private double CalorieOneGramm => Calorie / 100; // It's property return value
 
-        public Food(string name)
+        public Food(string name) : this(name, 0, 0, 0, 0)
         {
+            // Check is in another constructor
+            Name = name;
+            
+        }
+        public Food(string name, double calories, double proteins, double fats, double carbohydrats)
+        {
+            #region CheckParameters
             if (string.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentNullException($"variable {name} can't be empty or null.", nameof(name));
             }
+            if (calories < 0)
+            {
+                throw new ArgumentException($"variable {calories} can't be greater than zero.", nameof(calories));
+            }
+            if (proteins < 0)
+            {
+                throw new ArgumentException($"variable {proteins} can't be greater than zero.", nameof(proteins));
+            }
+            if (fats < 0)
+            {
+                throw new ArgumentException($"variable {fats} can't be greater than zero.", nameof(fats));
+            }
+            if (carbohydrats < 0)
+            {
+                throw new ArgumentException($"variable {carbohydrats} can't be greater than zero.", nameof(carbohydrats));
+            }
+            #endregion
+            Name = name;
+            Calorie = calories;
+            Proteins = proteins;
+            Fats = fats;
+            Carbohydrats = carbohydrats;
         }
 
     }

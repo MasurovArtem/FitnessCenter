@@ -10,8 +10,9 @@ namespace FitnesCenter.BL.Controller
     /// <summary>
     /// User Controller
     /// </summary>
-    public class UserController
+    public class UserController : ControllerBase
     {
+        private const string USERS_FILE_NAME = "users.dat";
         public List<User> Users { get; } // It's not Safe
         public User CurrentUser { get; }
 
@@ -36,31 +37,14 @@ namespace FitnesCenter.BL.Controller
                 Save();
             }
         }
-        public void Save() // It's necessary to indicate what we serialize 
+        
+        public void Save()
         {
-            //Serialize User
-            //Encrypt file
-            var binFormatter = new BinaryFormatter();
-
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                binFormatter.Serialize(fs, Users);
-            }
+            Save(USERS_FILE_NAME, Users);
         }
         private List<User> GetUsersData()
         {
-            var binFormatter = new BinaryFormatter();
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0 && binFormatter.Deserialize(fs) is List<User>users)
-                {
-                    return users;
-                }
-                else
-                {
-                    return new List<User>();
-                }
-            }
+            return Load<List<User>>("users.dat") ?? new List<User>(); ;
         }
 
         public void SetNewUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
