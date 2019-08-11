@@ -39,10 +39,7 @@ namespace FitnesCenter.CMD
                 {
                     break;
                 }
-                else
-                {
-                    Console.WriteLine("Incorect format date time");
-                }
+                Console.WriteLine("Incorect format date time");
             }
             return birthDate;
         }
@@ -51,14 +48,12 @@ namespace FitnesCenter.CMD
             while (true)
             {
                 Console.Write($"Enter {name}: ");
-                if (double.TryParse(Console.ReadLine(), out double value))
+                double value;
+                if (double.TryParse(Console.ReadLine(), out value))
                 {
                     return value;
                 }
-                else
-                {
-                    Console.WriteLine($"Incorect format: {name}");
-                }
+                Console.WriteLine($"Incorect format: {name}");
             }
         }
     }

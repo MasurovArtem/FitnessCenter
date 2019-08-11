@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
 
 namespace FitnesCenter.BL.Controller
 {
@@ -51,10 +50,9 @@ namespace FitnesCenter.BL.Controller
         private List<User> GetUsersData()
         {
             var binFormatter = new BinaryFormatter();
-
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
-                if (fs.Length > 0 && binFormatter.Deserialize(fs) is List<User> users)
+                if (fs.Length > 0 && binFormatter.Deserialize(fs) is List<User>users)
                 {
                     return users;
                 }

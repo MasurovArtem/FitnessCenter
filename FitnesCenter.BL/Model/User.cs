@@ -14,7 +14,9 @@ namespace FitnesCenter.BL.Model
 
         public double Height { get; set; }
         
-        public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
+        public int Age { get { return DateTime.Now.Year - BirthDate.Year; } } // аналог
+      //public int Age => DateTime.Now.Year - BirthDate.Year;
+
 
         public User(string name, 
                     Gender gender, 
@@ -25,11 +27,11 @@ namespace FitnesCenter.BL.Model
             #region checkInputParameters
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException("Name gender can't be empty or null.", nameof(name));
+                throw new ArgumentNullException($"variable { name } can't be empty or null.", nameof(name));
             }
             if (gender == null)
             {
-                throw new ArgumentNullException("Gender can't be empty.", nameof(gender));
+                throw new ArgumentNullException($"variable {gender} can't be empty.", nameof(gender));
             }
             if (birthDate < DateTime.Parse("01.01.1900") ||  birthDate >= DateTime.Now) //TODO : mayby need its write like this - "DateTime.Parse("1900/01/01")" 
             {
@@ -37,11 +39,11 @@ namespace FitnesCenter.BL.Model
             }
             if(weight <= 0)
             {
-                throw new ArgumentException("Weight can't be less than or equal to zero.", nameof(weight));
+                throw new ArgumentException($"variable {weight} can't be less than or equal to zero.", nameof(weight));
             }
             if(height <= 0)
             {
-                throw new ArgumentException("Height can't be less than or equal to zero.", nameof(height));
+                throw new ArgumentException($"variable {weight} can't be less than or equal to zero.", nameof(height));
             }
             #endregion
             Name = name;
@@ -55,7 +57,7 @@ namespace FitnesCenter.BL.Model
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException("Name gender can't be empty or null.", nameof(name));
+                throw new ArgumentNullException($"variable {name} can't be empty or null.", nameof(name));
             }
             Name = name;
         }
