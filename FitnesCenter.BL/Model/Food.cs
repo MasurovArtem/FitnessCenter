@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace FitnesCenter.BL.Model
 {
+    [Serializable]
     public class Food
     {
         public string Name { get; }
@@ -51,10 +52,10 @@ namespace FitnesCenter.BL.Model
             }
             #endregion
             Name = name;
-            Calorie = calories;
-            Proteins = proteins;
-            Fats = fats;
-            Carbohydrats = carbohydrats;
+            Calorie = calories / 100.0;
+            Proteins = proteins / 100.0;
+            Fats = fats / 100.0;
+            Carbohydrats = carbohydrats / 100.0;
         }
 
     }

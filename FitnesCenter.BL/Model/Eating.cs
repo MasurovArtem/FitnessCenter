@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnesCenter.BL.Model
 {
+    [Serializable]
     public class Eating
     {
         /// <summary>

@@ -22,30 +22,29 @@ namespace FitnesCenter.BL.Controller
             this.user = user ?? throw new ArgumentNullException($"variable {user} can't be empty", nameof(user));
 
             Foods = GetFoodsData();
-            Eating = GetEatingData();
+            Eating = GetEating();
         }
 
-        public bool AddEat(string foodName, double weight)
+        public bool Add(Food food, double weight)
         {
-            if (string.IsNullOrWhiteSpace(foodName))
-            {
-                throw new ArgumentNullException($"variable {foodName} can't be empty or null.", nameof(foodName));
-            }
-            if(weight < 0)
-            {
-                throw new ArgumentException($"variable {weight} can't be greater than zero.", nameof(weight));
-            }
-            var food = Foods.SingleOrDefault(f => f.Name == foodName);
-            var eating = new Eating(user)
-            if (food != null) // request all food details
-            {
-                Eating.Add();
-            }
-        }
+            var product = Foods.SingleOrDefault(f => f.Name == food.Name);
 
-        private List<Eating> GetEatingData()
+            if (product == null) // request all food details
+            {
+                Foods.Add(food);
+                Eating.Add(food, weight);
+                Save();
+            }
+            else
+            {
+                Eating.Add(product, weight);
+                Save();
+            }
+            return false;
+        }
+            private Eating GetEating()
         {
-            return Load<List<Eating>>(EATING_FILE_NAME) ?? new List<Eating>();
+            return Load<Eating>(EATING_FILE_NAME) ?? new Eating(user);
         }
 
         private List<Food> GetFoodsData()

@@ -13,6 +13,7 @@ namespace FitnesCenter.CMD
             var name = Console.ReadLine();
 
             var userController = new UserController(name);
+            var eatingController = new EatingController(userController.CurrentUser);
             if (userController.IsNewUser)
             {
                 Console.Write("Enter gender : ");
@@ -26,9 +27,40 @@ namespace FitnesCenter.CMD
 
                 userController.SetNewUserData(gender, birthDate, weight, height);
             }
+
             Console.WriteLine(userController.CurrentUser);
 
+            Console.WriteLine("your actions?");
+            Console.WriteLine("E - enter eating");
+            var key = Console.ReadKey();
+            if (key.Key == ConsoleKey.E)
+            {
+                Console.WriteLine();
+                var foods = EnterEating();
+                eatingController.Add(foods.Food, foods.Weight);
+                foreach (var item in eatingController.Eating.Foods)
+                {
+                    Console.WriteLine($"\t{item.Key.Name} - {item.Value}");
+                }
+            }
         }
+
+        private static (Food Food, double Weight) EnterEating()
+        {
+            Console.Write("Enter product name:");
+            var food = Console.ReadLine();
+
+            var callories = ParseDouble("calorie");
+            var prot = ParseDouble("proteins");
+            var fats = ParseDouble("fats");
+            var carb = ParseDouble("carbohydrats");
+
+            var weight = ParseDouble("serving weight");
+            var product = new Food(food,callories,prot,fats,carb);
+
+            return (Food : product, Weight : weight);
+        }
+
         private static DateTime ParseDateTime()
         {
             DateTime birthDate;
