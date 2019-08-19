@@ -16,6 +16,7 @@ namespace FitnesCenter.BL.Model
         public double Carbohydrats { get; }
         public double Calorie { get; }
 
+        
         private double ProteinsOneGramm => Proteins / 100; // It's property return value
         private double FatsOneGramm => Fats / 100; // It's property return value
         private double CarbohydratsOneGramm => Carbohydrats / 100; // It's property return value
@@ -36,11 +37,11 @@ namespace FitnesCenter.BL.Model
             }
             if (calories < 0)
             {
-                throw new ArgumentException($"variable {calories} can't be greater than zero.", nameof(calories));
+                throw new ArgumentException($"variable {calories} can't be less than zero.", nameof(calories));
             }
             if (proteins < 0)
             {
-                throw new ArgumentException($"variable {proteins} can't be greater than zero.", nameof(proteins));
+                throw new ArgumentException($"variable {proteins} can't be less than zero.", nameof(proteins));
             }
             if (fats < 0)
             {
