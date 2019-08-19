@@ -9,6 +9,7 @@ namespace FitnesCenter.BL.Controller
 {
     public class EatingController : ControllerBase
     {
+        //private Method
         private const string FOODS_FILE_NAME = "foods.dat";
         private const string EATING_FILE_NAME = "eating.dat";
 
